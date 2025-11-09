@@ -158,6 +158,31 @@ function formatCurrency(amount) {
     return formatNumber(amount) + ' MNT';
 }
 
+function formatAmountInput(value) {
+    // Enlever tout sauf les chiffres et le point
+    let cleanValue = value.replace(/[^0-9.]/g, '');
+    
+    // S'assurer qu'il n'y a qu'un seul point décimal
+    const parts = cleanValue.split('.');
+    if (parts.length > 2) {
+        cleanValue = parts[0] + '.' + parts.slice(1).join('');
+    }
+    
+    // Séparer la partie entière et décimale
+    const integerPart = parts[0] || '0';
+    const decimalPart = parts[1] || '';
+    
+    // Formater la partie entière avec des virgules
+    const formattedInteger = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    
+    // Reconstituer le nombre
+    if (parts.length > 1) {
+        return formattedInteger + '.' + decimalPart.substring(0, 2);
+    }
+    
+    return formattedInteger;
+}
+
 function getMongoliaTime() {
     const now = new Date();
     return new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Ulaanbaatar' }));
@@ -274,7 +299,7 @@ async function processTransfer() {
         return false;
     }
     
-    // Récupérer et valider le montant
+    // Récupérer et valider le montant (enlever les virgules)
     const amountStr = amountInput.value.replace(/,/g, '').trim();
     const amount = parseFloat(amountStr);
     
@@ -390,43 +415,55 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Afficher la page d'accueil par défaut avec les données chargées
     showPage('home');
     
-    // ========== GESTION DE L'INPUT MONTANT ==========
+    // ========== GESTION DE L'INPUT MONTANT AVEC FORMATAGE ==========
     const amountInput = document.querySelector('.amount-input');
     if (amountInput) {
+        // Formatage en temps réel pendant la saisie
         amountInput.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/[^0-9.]/g, '');
+            const cursorPosition = e.target.selectionStart;
+            const oldValue = e.target.value;
+            const oldLength = oldValue.length;
             
-            // Autoriser un seul point décimal
-            const parts = value.split('.');
-            if (parts.length > 2) {
-                value = parts[0] + '.' + parts.slice(1).join('');
+            // Formater la valeur
+            const formattedValue = formatAmountInput(oldValue);
+            e.target.value = formattedValue;
+            
+            // Ajuster la position du curseur après le formatage
+            const newLength = formattedValue.length;
+            const lengthDiff = newLength - oldLength;
+            let newPosition = cursorPosition + lengthDiff;
+            
+            // Si on a ajouté une virgule juste avant le curseur, avancer d'une position
+            if (lengthDiff > 0 && formattedValue[cursorPosition] === ',') {
+                newPosition++;
             }
             
-            // Limiter à 2 décimales
-            if (parts[1] && parts[1].length > 2) {
-                value = parts[0] + '.' + parts[1].substring(0, 2);
-            }
-            
-            e.target.value = value;
+            e.target.setSelectionRange(newPosition, newPosition);
         });
         
+        // Quand on clique dans le champ
         amountInput.addEventListener('focus', function(e) {
             if (e.target.value === '0.00' || e.target.value === '0') {
                 e.target.value = '';
             }
         });
         
+        // Quand on quitte le champ
         amountInput.addEventListener('blur', function(e) {
-            const value = e.target.value.trim();
+            const value = e.target.value.replace(/,/g, '').trim();
             if (value === '' || value === '0' || parseFloat(value) === 0) {
                 e.target.value = '0.00';
             } else {
                 const num = parseFloat(value);
                 if (!isNaN(num)) {
-                    e.target.value = num.toFixed(2);
+                    // Formater avec les virgules et 2 décimales
+                    e.target.value = formatNumber(num);
                 }
             }
         });
+        
+        // Initialiser avec 0.00
+        amountInput.value = '0.00';
     }
     
     // ========== COPIER LE NUMÉRO DE COMPTE ==========
