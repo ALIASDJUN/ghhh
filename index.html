@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khan Bank</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Page 1: Home -->
+        <div id="home" class="page active">
+            <div class="header">
+                <div class="header-left">
+                    <div class="user-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="greeting">
+                        <h2>Hello</h2>
+                        <h1>BATBOLD. N</h1>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="icon-btn">
+                        <i class="fas fa-bell"></i>
+                    </button>
+                    <button class="icon-btn">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="account-card">
+                <div class="account-header">
+                    <div class="account-number">
+                        <span class="star-icon">★</span>
+                        <span>MN14 0005 00</span>
+                        <span style="font-weight: 700;">5684015842</span>
+                    </div>
+                    <i class="fas fa-copy copy-icon"></i>
+                </div>
+                <div class="balance">
+                    <div class="balance-amount">400,000,000.00</div>
+                    <div class="currency">MNT</div>
+                </div>
+                <div class="action-buttons">
+                    <button class="action-btn">Statement</button>
+                    <button class="action-btn">My Finances</button>
+                </div>
+            </div>
+            <img src="photo.png" alt="">
+
+            <div class="transactions">
+                <div class="transactions-header">
+                    <div>
+                        <div class="transactions-title">Recent Transactions</div>
+                        <div class="account-info">MN14 0005 00 5684015842</div>
+                    </div>
+                    <i class="fas fa-chevron-down dropdown-icon"></i>
+                </div>
+
+                <div class="transaction-date">2025.04.16</div>
+
+                <div class="transaction-item">
+                    <div class="transaction-icon">
+                        <i class="fas fa-arrow-up"></i>
+                    </div>
+                    <div class="transaction-details">
+                        <div class="transaction-description">Киоск-р хийсэн гүйлгээний хураамж</div>
+                        <div class="transaction-remainder">Rem: 0.00</div>
+                    </div>
+                    <div class="transaction-amount">-80.00</div>
+                    <i class="fas fa-chevron-right arrow-right"></i>
+                </div>
+
+                <div class="transaction-item">
+                    <div class="transaction-icon">
+                        <i class="fas fa-arrow-up"></i>
+                    </div>
+                    <div class="transaction-details">
+                        <div class="transaction-time">09:15</div>
+                        <div class="transaction-description">о</div>
+                        <div class="transaction-remainder">Rem: 80.00</div>
+                    </div>
+                    <div class="transaction-amount">-190,000.00</div>
+                    <i class="fas fa-chevron-right arrow-right"></i>
+                </div>
+
+                <div class="transaction-date">2025.04.15</div>
+
+                <div class="transaction-item">
+                    <div class="transaction-icon">
+                        <i class="fas fa-arrow-up"></i>
+                    </div>
+                    <div class="transaction-details">
+                        <div class="transaction-time">13:18</div>
+                    </div>
+                    <div class="transaction-amount">-50.00</div>
+                    <i class="fas fa-chevron-right arrow-right"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 2: Transfer -->
+        <div id="transfer" class="page">
+            <div class="page-header">
+                <button class="back-btn" onclick="showPage('home')">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h1 class="page-title">Transaction within Khan Bank</h1>
+            </div>
+
+            <div class="transfer-section">
+                <div class="section-label">Transfer account</div>
+                <div class="transfer-account-card">
+                    <div class="transfer-account-info">
+                        <div class="transfer-account-label">Current/ I...</div>
+                        <div class="transfer-account-number">MN14 0005 00 5684015842</div>
+                    </div>
+                    <div class="transfer-balance-right">400,000,000.00 ₮</div>
+                    <i class="fas fa-chevron-down" style="font-size: 20px; margin-left: 10px;"></i>
+                </div>
+
+                <div class="amount-section">
+                    <div class="currency-label">MNT</div>
+                    <input type="text" class="amount-input" value="0.00" placeholder="0.00">
+                </div>
+
+                <button class="digi-pay-btn">
+                    <div class="digi-pay-logo">
+                        <div class="digi-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <span>DiGi Pay</span>
+                    </div>
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+
+                <div class="section-label">Recipient account</div>
+                <input type="text" class="input-field" id="recipientNameInput" placeholder="Recipient name">
+                <input type="text" class="input-field" id="recipientAccountInput" placeholder="Recipient account number">
+                <input type="text" class="input-field" id="descriptionInput" placeholder="Description">
+
+                <div class="tag-container">
+                    <div class="tag"><i class="fas fa-plus"></i></div>
+                    <div class="tag">Food</div>
+                    <div class="tag">Purchase</div>
+                    <div class="tag">Service payment</div>
+                    <div class="tag">from BATBOLD</div>
+                </div>
+
+                <button class="continue-btn">Continue</button>
+            </div>
+        </div>
+
+        <!-- Page 3: Success -->
+        <div id="success" class="page">
+            <div class="success-container">
+                <div class="success-card">
+                    <div class="success-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="success-message">Гүйлгээ амжилттай.</div>
+                    <div class="success-amount" id="displayAmount">77,000.00 MNT</div>
+                    <div class="success-date">2025/11/01 12:40</div>
+                </div>
+
+                <div class="success-info-box">
+                    <div class="info-row">
+                        <div class="info-label">Дансны үлдэгдэл</div>
+                        <div class="info-value-right">
+                            <span id="remainingBalance">*****</span>
+                            <i class="fas fa-eye-slash eye-icon"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="success-info-box">
+                    <div class="info-row">
+                        <div class="info-label">Хүлээн авагч</div>
+                        <div class="info-value-right">
+                            <div class="recipient-info">
+                                <div>
+                                    <div class="recipient-name" id="recipientName">САЙНЖАРГАЛ ОХИНДОЙ</div>
+                                    <div class="recipient-account" id="recipientAccount">MN77 0004 000434068335</div>
+                                </div>
+                                <div class="bank-logo-blue">
+                                    <i class="fas fa-sync-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="success-info-box">
+                    <div class="info-row-single">
+                        <div class="info-label">Гүйлгээний утга</div>
+                        <div class="transaction-desc" id="transactionDescription">1</div>
+                    </div>
+                </div>
+
+                <div class="success-buttons">
+                    <button class="outline-btn" onclick="showPage('home')">Загвар хадгалах</button>
+                    <button class="primary-btn" onclick="showPage('home')">Дуусгах</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <a href="#" class="nav-item" onclick="showPage('home')">
+                <i class="fas fa-home nav-icon"></i>
+                <div class="nav-label">Home</div>
+            </a>
+            <button class="qr-button">
+                <i class="fas fa-qrcode"></i>
+            </button>
+            <a href="#" class="nav-item" onclick="showPage('transfer')">
+                <i class="fas fa-exchange-alt nav-icon"></i>
+                <div class="nav-label">Transfer</div>
+            </a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

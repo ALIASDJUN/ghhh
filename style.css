@@ -1,0 +1,926 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #f5f5f5;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 768px;
+    margin: 0 auto;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 80px;
+    width: 100%;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+/* Header - Responsive */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #f5f5f5;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    min-width: 0;
+}
+
+.user-icon {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #333;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.greeting {
+    min-width: 0;
+    flex: 1;
+}
+
+.greeting h2 {
+    font-size: 14px;
+    color: #666;
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.greeting h1 {
+    font-size: 20px;
+    color: #000;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.header-right {
+    display: flex;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.icon-btn {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #333;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    background: transparent;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+/* Page Header - Responsive */
+.page-header {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background-color: #f5f5f5;
+    gap: 12px;
+}
+
+.back-btn {
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: transparent;
+    font-size: 22px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.page-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #000;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Account Card - Responsive */
+.account-card {
+    margin: 15px;
+    background: linear-gradient(135deg, #1a7f5a 0%, #0d5c3f 100%);
+    border-radius: 16px;
+    padding: 20px;
+    color: white;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.account-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.account-number {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    flex: 1;
+    min-width: 0;
+}
+
+.star-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.copy-icon {
+    font-size: 18px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.balance {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.balance-amount {
+    font-size: clamp(32px, 8vw, 48px);
+    font-weight: 700;
+}
+
+.currency {
+    font-size: clamp(24px, 6vw, 36px);
+    font-weight: 600;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    flex: 1;
+    min-width: 120px;
+    padding: 12px 10px;
+    background: rgba(255,255,255,0.2);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+    white-space: nowrap;
+}
+
+.action-btn:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+/* Menu Grid - Responsive */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+    gap: 12px;
+    margin: 15px;
+    padding: 0 5px;
+}
+
+.menu-item {
+    background: white;
+    border-radius: 12px;
+    padding: 15px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.2s;
+    min-height: 100px;
+}
+
+.menu-item:hover {
+    transform: translateY(-3px);
+}
+
+.menu-icon {
+    font-size: 28px;
+    color: #1a7f5a;
+}
+
+.menu-image {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    border-radius: 8px;
+    display: block;
+}
+
+.menu-image[src=""],
+.menu-image[src="images/account.png"]:not([complete]),
+.menu-image[src="images/loan.png"]:not([complete]),
+.menu-image[src="images/card.png"]:not([complete]),
+.menu-image[src="images/payment.png"]:not([complete]) {
+    background: #e8f5e9;
+    border: 2px dashed #1a7f5a;
+}
+
+.menu-label {
+    font-size: 12px;
+    color: #333;
+    font-weight: 600;
+    text-align: center;
+    word-wrap: break-word;
+    line-height: 1.3;
+}
+
+/* Transactions - Responsive */
+.transactions {
+    margin: 15px;
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.transactions-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.transactions-title {
+    font-size: 14px;
+    color: #666;
+    font-weight: 500;
+}
+
+.account-info {
+    font-size: 13px;
+    color: #333;
+    font-weight: 600;
+}
+
+.dropdown-icon {
+    font-size: 18px;
+    color: #999;
+}
+
+.transaction-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+    gap: 10px;
+}
+
+.transaction-item:last-child {
+    border-bottom: none;
+}
+
+.transaction-date {
+    font-size: 16px;
+    color: #090b0a;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.transaction-icon {
+    width: 36px;
+    height: 36px;
+    background: #fff3e6;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #ff8c00;
+    flex-shrink: 0;
+}
+
+.transaction-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.transaction-description {
+    font-size: 13px;
+    color: #333;
+    margin-bottom: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.transaction-remainder {
+    font-size: 11px;
+    color: #999;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.transaction-amount {
+    font-size: 14px;
+    font-weight: 700;
+    color: #ff6b00;
+    flex-shrink: 0;
+    margin-left: 10px;
+}
+
+.transaction-time {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.arrow-right {
+    color: #ccc;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+/* Transfer Page - Responsive */
+.transfer-section {
+    margin: 15px;
+}
+
+.section-label {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.transfer-account-card {
+    background: linear-gradient(135deg, #1a7f5a 0%, #0d5c3f 100%);
+    border-radius: 12px;
+    padding: 15px;
+    color: white;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    gap: 10px;
+}
+
+.transfer-account-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.transfer-account-label {
+    font-size: 13px;
+    opacity: 0.9;
+    margin-bottom: 4px;
+}
+
+.transfer-account-number {
+    font-size: 14px;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.transfer-balance-right {
+    font-size: clamp(18px, 4vw, 22px);
+    font-weight: 700;
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+
+.amount-section {
+    background: white;
+    border-radius: 12px;
+    padding: 25px 15px;
+    text-align: center;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.currency-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.amount-input {
+    font-size: clamp(32px, 8vw, 48px);
+    font-weight: 700;
+    color: #1a7f5a;
+    border: none;
+    outline: none;
+    text-align: center;
+    width: 100%;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 8px;
+}
+
+.digi-pay-btn {
+    background: linear-gradient(135deg, #1a7f5a 0%, #0d5c3f 100%);
+    border: none;
+    border-radius: 12px;
+    padding: 15px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(26, 127, 90, 0.3);
+    width: 100%;
+    gap: 10px;
+}
+
+.digi-pay-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.digi-icon {
+    width: 28px;
+    height: 28px;
+    background: white;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1a7f5a;
+    flex-shrink: 0;
+}
+
+.input-field {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+    outline: none;
+}
+
+.input-field::placeholder {
+    color: #999;
+}
+
+.tag-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.tag {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 13px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.tag:hover {
+    background: #f0f0f0;
+}
+
+.continue-btn {
+    background: linear-gradient(135deg, #1a7f5a 0%, #0d5c3f 100%);
+    border: none;
+    border-radius: 12px;
+    padding: 15px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    width: 100%;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(26, 127, 90, 0.3);
+}
+
+/* Success Page - Responsive */
+.success-container {
+    padding: 40px 15px;
+    text-align: center;
+}
+
+.success-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    margin-bottom: 20px;
+}
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    background: #1a7f5a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 40px;
+    color: white;
+}
+
+.success-message {
+    font-size: 20px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 20px;
+}
+
+.success-amount {
+    font-size: clamp(32px, 8vw, 42px);
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 12px;
+}
+
+.success-date {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 0;
+}
+
+.success-info-box {
+    background: #f8f8f8;
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin: 0 15px 15px 15px;
+    text-align: left;
+}
+
+.info-row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.info-row-single {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.info-label {
+    font-size: 14px;
+    color: #999;
+    font-weight: 400;
+}
+
+.info-value-right {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+}
+
+.recipient-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+}
+
+.recipient-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 4px;
+}
+
+.recipient-account {
+    font-size: 14px;
+    color: #666;
+}
+
+.bank-logo-blue {
+    width: 50px;
+    height: 50px;
+    background: #4A90E2;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.transaction-desc {
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+    margin-top: 5px;
+}
+
+.success-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.outline-btn {
+    flex: 1;
+    min-width: 120px;
+    background: white;
+    border: 2px solid #1a7f5a;
+    border-radius: 12px;
+    padding: 12px;
+    color: #1a7f5a;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.primary-btn {
+    flex: 1;
+    min-width: 120px;
+    background: linear-gradient(135deg, #1a7f5a 0%, #0d5c3f 100%);
+    border: none;
+    border-radius: 12px;
+    padding: 12px;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.eye-icon {
+    font-size: 18px;
+    color: #666;
+}
+
+/* Bottom Navigation - Responsive */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 768px;
+    width: 100%;
+    background: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 12px 10px;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    color: #1a7f5a;
+    text-decoration: none;
+    flex: 1;
+    max-width: 80px;
+}
+
+.nav-icon {
+    font-size: 22px;
+}
+
+.nav-label {
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.qr-button {
+    width: 60px;
+    height: 60px;
+    background: #1a7f5a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 26px;
+    margin-top: -25px;
+    box-shadow: 0 4px 12px rgba(26, 127, 90, 0.4);
+    border: none;
+    cursor: pointer;
+}
+
+/* Image centrée */
+#home img {
+    display: block;
+    width: calc(100% - 30px);
+    max-width: 100%;
+    height: auto;
+    margin: 15px;
+    border-radius: 12px;
+    object-fit: contain;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Media Queries pour petits écrans */
+@media (max-width: 480px) {
+    .header {
+        padding: 12px;
+    }
+    
+    .user-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+    }
+    
+    .greeting h1 {
+        font-size: 18px;
+    }
+    
+    .greeting h2 {
+        font-size: 12px;
+    }
+    
+    .icon-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+    }
+    
+    .account-card {
+        margin: 12px;
+        padding: 16px;
+    }
+    
+    .menu-grid {
+        grid-template-columns: repeat(auto-fit, minmax(65px, 1fr));
+        gap: 10px;
+        margin: 12px;
+    }
+    
+    .menu-item {
+        padding: 12px 8px;
+        min-height: 90px;
+    }
+    
+    .menu-icon {
+        font-size: 24px;
+    }
+    
+    .menu-image {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .menu-label {
+        font-size: 11px;
+    }
+    
+    .action-btn {
+        font-size: 13px;
+        padding: 10px 8px;
+        min-width: 100px;
+    }
+    
+    .transactions {
+        margin: 12px;
+        padding: 12px;
+    }
+    
+    .transaction-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+    }
+    
+    .qr-button {
+        width: 55px;
+        height: 55px;
+        font-size: 24px;
+        margin-top: -22px;
+    }
+    
+    .nav-icon {
+        font-size: 20px;
+    }
+    
+    .nav-label {
+        font-size: 10px;
+    }
+}
+
+/* Media Queries pour très petits écrans */
+@media (max-width: 360px) {
+    .greeting h1 {
+        font-size: 16px;
+    }
+    
+    .menu-grid {
+        grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+        gap: 8px;
+    }
+    
+    .menu-item {
+        padding: 10px 6px;
+        min-height: 80px;
+    }
+    
+    .menu-icon {
+        font-size: 22px;
+    }
+    
+    .menu-image {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .action-buttons {
+        gap: 8px;
+    }
+    
+    .action-btn {
+        font-size: 12px;
+        padding: 8px 6px;
+        min-width: 90px;
+    }
+}
+
+/* Media Queries pour écrans moyens et grands */
+@media (min-width: 768px) {
+    .container {
+        border-left: 1px solid #e0e0e0;
+        border-right: 1px solid #e0e0e0;
+    }
+    
+    .menu-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Amélioration de l'accessibilité tactile */
+@media (hover: none) and (pointer: coarse) {
+    .menu-item,
+    .action-btn,
+    .icon-btn,
+    .nav-item,
+    .continue-btn,
+    .primary-btn,
+    .outline-btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
